@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prendre Rendez-vous</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header class="gs-wrapper-full o-header">
+        <a class="a-header-acc linkReset" href="index.html">ACCUEIL</a>
+        <div class="m-header-other">
+            <a class="a-header-urg linkReset" href="#">EN CAS D’URGENCE</a>
+            <a class="a-header-cont linkReset" href="#">CONTACT</a>
+        </div>
+    </header>
+
+    <main class="gs-wrapper">
+        
+        <div class="m-parcour-content">
+            <h1 class="a-parcour-title">Prendre rendez-vous</h1>
+            <h2 class="a-parcour-subtitle">Sélectionnez le service souhaité</h2>
+        </div>
+
+        <div class="m-parcour-card-all m-rdv-top-nav">
+            <div class="m-parcour-card card-medecin js-nav-card" data-service="medecin">
+                <div class="m-parcour-card-txt">Médecin Généraliste</div>
+            </div>
+            
+            <div class="m-parcour-card card-psy js-nav-card" data-service="psy">
+                <div class="m-parcour-card-txt">Psychologue</div>
+            </div>
+            
+            <div class="m-parcour-card card-gyneco js-nav-card" data-service="gyneco">
+                <div class="m-parcour-card-txt">Gynécologue</div>
+            </div>
+        </div>
+
+        <section class="o-rdv-section hidden-section" id="step-praticien">
+            <div class="m-card-rdv">
+                <h2 class="a-rdv-title" id="title-praticien">Choisissez votre praticien</h2>
+                <div class="m-btn-group m-dynamic-buttons" id="container-praticien"></div>
+            </div>
+        </section>
+
+        <section class="o-rdv-section hidden-section" id="step-motif">
+            <div class="m-card-rdv">
+                <p class="a-rdv-subtitle" id="label-praticien-name-1">PRATICIEN</p>
+                <h2 class="a-rdv-title">Motif de consultation</h2>
+                <div class="m-btn-group m-dynamic-buttons" id="container-motif"></div>
+            </div>
+        </section>
+
+        <section class="o-rdv-section hidden-section" id="step-nature">
+            <div class="m-card-rdv">
+                <p class="a-rdv-subtitle" id="label-praticien-name-2">PRATICIEN</p>
+                <h2 class="a-rdv-title">Type de rendez-vous</h2>
+                <div class="m-btn-group m-dynamic-buttons" id="container-nature"></div>
+            </div>
+        </section>
+        
+        <section class="o-rdv-section hidden-section" id="step-date">
+             <div class="m-card-rdv">
+                <h2 class="a-rdv-title">Choisissez une date</h2>
+                <div class="m-date-container">
+                    <input type="date" class="m-date-input" id="date-input">
+                </div>
+            </div>
+        </section>
+
+        <section class="o-rdv-section hidden-section" id="step-slots">
+            <div class="m-card-rdv">
+                <h2 class="a-rdv-title">Horaire du rendez-vous</h2>
+                
+                <div class="m-contact-info">
+                    <p>Secrétariat médical</p>
+                    <p class="m-contact-horaire">Ouvert du lundi au samedi : 8h30-12h30 / 14h-18h</p>
+                </div>
+
+                <div class="m-slots-container">
+                    <div class="m-slot-column">
+                        <h3>Matinée</h3>
+                        <div class="m-slots-grid" id="slots-morning">
+                            <button class="btn-slot" value="07:00">07H00</button>
+                            <button class="btn-slot" value="08:00">08H00</button>
+                            <button class="btn-slot" value="09:00">09H00</button>
+                            <button class="btn-slot" value="09:30">09H30</button>
+                            <button class="btn-slot" value="10:00">10H00</button>
+                            <button class="btn-slot" value="10:30">10H30</button>
+                            <button class="btn-slot" value="10:45">10H45</button>
+                            <button class="btn-slot" value="11:00">11H00</button>
+                            <button class="btn-slot" value="11:30">11H30</button>
+                            <button class="btn-slot" value="12:00">12H00</button>
+                        </div>
+                    </div>
+                    <div class="m-slot-column">
+                        <h3>Après-midi</h3>
+                        <div class="m-slots-grid" id="slots-afternoon">
+                            <button class="btn-slot" value="13:00">13H00</button>
+                            <button class="btn-slot" value="13:30">13H30</button>
+                            <button class="btn-slot" value="14:00">14H00</button>
+                            <button class="btn-slot" value="14:30">14H30</button>
+                            <button class="btn-slot" value="15:00">15H00</button>
+                            <button class="btn-slot" value="15:30">15H30</button>
+                            <button class="btn-slot" value="16:00">16H00</button>
+                            <button class="btn-slot" value="16:30">16H30</button>
+                            <button class="btn-slot" value="17:00">17H00</button>
+                            <button class="btn-slot" value="17:15">17H15</button>
+                            <button class="btn-slot" value="17:30">17H30</button>
+                            <button class="btn-slot" value="18:00">18H00</button>
+                            <button class="btn-slot" value="18:30">18H30</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="o-rdv-section hidden-section" id="recap-section">
+            <div class="m-card-rdv recap-card">
+                <p class="a-rdv-subtitle" style="color:var(--bleu-rdv)">CONFIRMATION</p>
+                <h2 class="a-rdv-title">Vous avez rendez-vous !</h2>
+                <div class="a-recap-text">
+                    <p>Rendez-vous confirmé avec <strong id="final-psy">...</strong></p>
+                    <p>Motif : <strong id="final-motif">...</strong> (<span id="final-nature">...</span>)</p>
+                    <p>Le <strong id="final-date">...</strong> à <strong id="final-time">...</strong>.</p>
+                </div>
+                <div class="m-btn-group" style="margin-top: 2rem;">
+                    <button class="btn-rdv btn-blue end" onclick="window.location.reload()">Annuler ou décaler mon rendez-vous</button>
+
+                    <button class="btn-rdv btn-blue" onclick="window.location.reload()">Quoi préparer pour mon rendez-vous</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

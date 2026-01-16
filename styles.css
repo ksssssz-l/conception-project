@@ -1,0 +1,465 @@
+/* =========================================
+   RESET & GLOBAL
+   ========================================= */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    background-color: var(--bg-grey);
+    color: var(--grey);
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+.gs-wrapper {
+    width: 80%;
+    max-width: 1440px;
+    min-width: 320px;
+    margin: auto;
+}
+
+.gs-wrapper-full {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+.linkReset {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* =========================================
+   VARIABLES & DESIGN SYSTEM
+   ========================================= */
+:root {
+    --blanc: #FFFFFF;
+    --noir: #1a1a1a;
+    --bleu: #00897B;
+    --hover-vert: #68E2BD;
+    --rouge: #AE172B;
+    --grey: #37474F;
+    --bg-grey: #F4F6F8;
+    --header-grey: #FFFFFF;
+    --violet: #4D1494;
+
+    /* Couleurs RDV spécifiques */
+    --bleu-rdv: #2962FF;
+    --jaune-rdv: #FFD600;
+    
+    /* Effets */
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.1);
+    --radius: 16px;
+
+    /* Typographie */
+    --main-font: 'Zalando Sans', 'Arial', sans-serif;
+    --space: 0.25rem;
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
+.o-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--header-grey);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 10;
+}
+
+.m-header-other {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.a-header-acc,
+.a-header-urg,
+.a-header-cont {
+    padding: calc(var(--space) * 8);
+    text-align: center;
+    font-family: var(--main-font);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    display: block;
+    transition: opacity 0.3s;
+}
+
+.a-header-acc {
+    background: #f0f0f0;
+    color: var(--noir);
+}
+
+.a-header-urg {
+    background-color: var(--rouge);
+    color: var(--blanc);
+}
+
+.a-header-cont {
+    background-color: var(--violet);
+    color: var(--blanc);
+}
+
+.a-header-acc:hover,
+.a-header-urg:hover,
+.a-header-cont:hover {
+    opacity: 0.9;
+}
+
+/* =========================================
+   TITRES & HERO
+   ========================================= */
+.m-parcour-content {
+    margin-bottom: 2rem;
+    padding-top: 3rem;
+    text-align: left;
+}
+
+.a-parcour-title {
+    font-family: var(--main-font);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--noir);
+    margin-bottom: 0.5rem;
+}
+
+.a-parcour-subtitle {
+    font-family: var(--main-font);
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--grey);
+    opacity: 0.8;
+}
+
+/* =========================================
+   NAVIGATION (CARTES DU HAUT)
+   ========================================= */
+.m-rdv-top-nav {
+    display: flex;
+    justify-content: flex-start;
+    gap: 2rem;
+    padding-top: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.m-parcour-card {
+    width: 200px;
+    height: 160px;
+    border-radius: var(--radius);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: var(--shadow-soft);
+    border: 4px solid transparent;
+}
+
+.m-parcour-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Images Spécifiques */
+.card-medecin {
+    background-color: #E3F2FD;
+    background-image: url('assets/img/01.jpg');
+    background-size: cover;
+}
+
+.card-psy {
+    background-color: #F3E5F5;
+    background-image: url('assets/img/02.png');
+    background-size: cover;
+}
+
+.card-gyneco {
+    background-color: #FCE4EC;
+    background-image: url('assets/img/03.png');
+    background-size: cover;
+}
+
+.m-parcour-card-txt {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0.8rem;
+    font-family: var(--main-font);
+    font-weight: 700;
+    text-align: center;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--noir);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s;
+}
+
+/* État Actif Navigation */
+.m-parcour-card.active {
+    border-color: var(--hover-vert);
+    transform: scale(1.05);
+}
+
+.m-parcour-card.active .m-parcour-card-txt {
+    background: var(--blanc);
+    color: var(--noir);
+}
+
+/* =========================================
+   SECTIONS & ANIMATIONS
+   ========================================= */
+.hidden-section {
+    display: none;
+}
+
+.visible-section {
+    display: flex;
+    animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUpFade {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.o-rdv-section {
+    padding: 1rem 0;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.m-card-rdv {
+    background: var(--blanc);
+    border-radius: var(--radius);
+    padding: 3rem;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.a-rdv-subtitle {
+    color: var(--noir) !important;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.a-rdv-title {
+    color: var(--noir);
+    font-family: var(--main-font);
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+}
+
+/* =========================================
+   BOUTONS DE CHOIX
+   ========================================= */
+.m-btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn-rdv {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 12px;
+    font-family: var(--main-font);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 220px;
+    background-color: #f0f4f8;
+    color: var(--noir);
+}
+
+.btn-rdv.end {
+  background: var(--blanc);
+  border: 2px solid var(--hover-vert);
+  color: var(--noir);
+}
+
+.btn-rdv.end:hover {
+    background-color: var(--noir);
+    color: var(--hover-vert);
+    transform: translateY(-2px);
+}
+
+.btn-rdv:hover {
+    background-color: var(--hover-vert);
+    transform: translateY(-2px);
+}
+
+/* Bouton Sélectionné */
+.btn-rdv.selected {
+    background-color: var(--hover-vert);
+    color: var(--noir);
+    box-shadow: 0 4px 15px rgba(41, 98, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   INPUT DATE & HORAIRES
+   ========================================= */
+.m-date-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.m-date-input {
+    padding: 1rem 2rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-family: var(--main-font);
+    font-size: 1.2rem;
+    color: var(--noir);
+    background: var(--blanc);
+    outline: none;
+    transition: border-color 0.3s;
+    cursor: pointer;
+}
+
+.m-date-input:focus {
+    border-color: var(--hover-vert);
+}
+
+.m-contact-info {
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    color: var(--grey);
+    opacity: 0.8;
+}
+
+.m-contact-horaire {
+    font-weight: 600;
+    color: var(--noir);
+    margin-top: 0.5rem;
+}
+
+/* Grille Horaires */
+.m-slots-container {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.m-slot-column h3 {
+    color: var(--hover-vert);
+    margin-bottom: 1.5rem;
+    font-family: var(--main-font);
+    font-weight: 700;
+}
+
+.m-slots-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+}
+
+.btn-slot {
+    padding: 0.7rem 1.2rem;
+    border: 1px solid #e0e0e0;
+    background: var(--blanc);
+    color: var(--noir);
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-slot:hover {
+    border-color: var(--hover-vert);
+    color: var(--noir);
+    background: #f5f9ff;
+    scale: 1.05;
+}
+
+.btn-slot.selected {
+    background: var(--hover-vert);
+    color: var(--noir);
+    border-color: var(--hover-vert);
+    box-shadow: 0 4px 10px rgba(41, 98, 255, 0.2);
+    transition: all 0.2s ease;
+}
+
+.btn-slot.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    border-color: transparent;
+    background: #f0f0f0;
+    color: #aaa;
+    pointer-events: none;
+}
+
+/* =========================================
+   RECAPITULATIF
+   ========================================= */
+.recap-card {
+    border: 2px solid var(--hover-vert);
+    background: #f8fbff;
+}
+
+.a-recap-text {
+    font-family: var(--main-font);
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: var(--noir);
+}
+
+.a-recap-text strong {
+    color: var(--hover-vert);
+}
+
