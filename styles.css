@@ -335,7 +335,6 @@ select {
     color: var(--blanc);
 }
 
-/* Styles Lignes Dashboard */
 .appointment-row {
     display: flex;
     align-items: center;

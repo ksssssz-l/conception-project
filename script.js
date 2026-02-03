@@ -1,9 +1,4 @@
-// =========================================================
-// 1. DATA CENTER
-// =========================================================
-
 const db = {
-    // --- DONNÉES INVENTÉES (MÉDECIN) ---
     medecin: {
         label: "Médecin Généraliste",
         praticiens: [
@@ -23,7 +18,6 @@ const db = {
         horaires: { default: ["09:00", "09:30", "10:00", "11:00", "14:00", "15:00", "16:30"] }
     },
 
-    // --- DONNÉES PSYCHOLOGUE (BASÉES SUR PDF) ---
     psy: {
         label: "Psychologue",
         praticiens: [
@@ -60,7 +54,6 @@ const db = {
         }
     },
 
-    // --- DONNÉES INVENTÉES (GYNÉCO) ---
     gyneco: {
         label: "Gynécologue",
         praticiens: [
@@ -80,9 +73,6 @@ const db = {
     }
 };
 
-// =========================================================
-// 2. ÉTAT GLOBAL
-// =========================================================
 let state = {
     service: null, 
     praticien: null,
@@ -92,9 +82,7 @@ let state = {
     heure: null
 };
 
-// =========================================================
-// 3. LOGIQUE & ANIMATIONS
-// =========================================================
+
 
 const navCards = document.querySelectorAll('.js-nav-card');
 const sectionPraticien = document.getElementById('step-praticien');
@@ -256,35 +244,27 @@ document.querySelectorAll('.btn-slot').forEach(btn => {
     });
 });
 
-// =========================================================
-// 4. PERSISTANCE (SAUVEGARDE DANS LE DASHBOARD)
-// =========================================================
+
 function saveBooking() {
-    // On récupère la base existante ou on crée un tableau vide
     let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
     
-    // On crée l'objet du nouveau RDV
     const newAppointment = {
-        id: Date.now(), // ID unique basé sur le temps
+        id: Date.now(),
         service: state.service,
         praticienId: state.praticien,
         motif: state.motif,
         nature: state.nature,
         date: state.date,
         heure: state.heure,
-        // Pour l'exercice on simule des noms de parents
         patientName: state.motif === "couple" ? "Madame Art & Monsieur Art" : "Madame Art"
     };
 
-    // On l'ajoute et on sauvegarde
     appointments.push(newAppointment);
     localStorage.setItem('appointments', JSON.stringify(appointments));
     console.log("RDV Sauvegardé :", newAppointment);
 }
 
-// ---------------------------------------------
-// ETAPE 6 : RECAP
-// ---------------------------------------------
+
 function showRecap() {
     const sData = db[state.service];
     const pName = sData.praticiens.find(p => p.id === state.praticien).nom;
@@ -300,7 +280,6 @@ function showRecap() {
     document.getElementById('final-date').textContent = dateStr;
     document.getElementById('final-time').textContent = state.heure.replace(':', 'h');
 
-    // NOUVEAU : On sauvegarde le RDV au moment de l'affichage du récap
     saveBooking();
 
     showSection(sectionRecap);
