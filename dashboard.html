@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - Madame Lemaire</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    </head>
+
+<body class="dashboard-body">
+
+    <header class="gs-wrapper-full o-header">
+        <a class="a-header-acc linkReset" href="index.html">ACCUEIL</a>
+        <div class="m-header-other">
+            <a class="a-header-urg linkReset" href="#">EN CAS D’URGENCE</a>
+            <a class="a-header-cont linkReset" href="#">CONTACT</a>
+        </div>
+    </header>
+
+    <main class="gs-wrapper">
+        
+        <section class="m-parcour-content">
+            <h1 class="a-parcour-title">Tableau de bord</h1>
+            <h2 class="a-parcour-subtitle">Madame Lemaire</h2>
+        </section>
+
+        <section class="m-card-rdv dashboard-calendar-block">
+            <h2 class="a-rdv-title" style="color: var(--bleu-rdv)">Mes rendez-vous</h2>
+            
+            <div class="calendar-nav">
+                <span> < Janvier 2026 > </span>
+            </div>
+
+            <div class="calendar-placeholder">
+                <p><strong>CALENDRIER</strong></p>
+                <p>+ sélectionnez une date pour ouvrir le bloc ci-dessous</p>
+            </div>
+        </section>
+
+        <section class="o-rdv-section visible-section" id="daily-listing">
+            <div class="m-card-rdv listing-container" style="text-align: left; padding: 2rem;">
+                <h3 class="a-rdv-title" style="font-size: 1.4rem; margin-bottom: 1rem;">Mercredi 7 janvier 2026</h3>
+                
+                <div class="dashboard-legend">
+                    <span class="dot dot-couple"></span> couples
+                    <span class="dot dot-enceinte"></span> femmes enceintes
+                    <span class="dot dot-repos"></span> repos
+                    <span class="dot dot-ferme"></span> fermé
+                </div>
+
+                <div class="appointments-list" id="js-appointments-list">
+                    <div class="appointment-row row-empty">
+                        <span class="time">09h00 - 10h00</span>
+                        <span class="patient"></span>
+                        <button class="btn-manage">GÉRER LE CRÉNEAU</button>
+                    </div>
+
+                    <div class="appointment-row row-couple">
+                        <span class="time">09h00 - 10h00</span>
+                        <span class="patient">Madame Art & Monsieur Art</span>
+                        <button class="btn-manage">GÉRER LE RENDEZ-VOUS</button>
+                    </div>
+
+                    <div class="appointment-row row-enceinte">
+                        <span class="time">10h00 - 10h45</span>
+                        <span class="patient">Madame Art</span>
+                        <button class="btn-manage">GÉRER LE RENDEZ-VOUS</button>
+                    </div>
+
+                    <div class="appointment-row row-repos">
+                        <span class="time" style="color: white;">12h00 - 14h00</span>
+                        <span class="patient"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

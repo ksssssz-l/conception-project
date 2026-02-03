@@ -19,8 +19,9 @@ html {
 body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
-    background-color: var(--bg-grey);
-    color: var(--grey);
+    background-color: #F7F7F1;
+    color: #37474F;
+    font-family: 'Zalando Sans', Arial, sans-serif;
 }
 
 img,
@@ -66,400 +67,292 @@ select {
 :root {
     --blanc: #FFFFFF;
     --noir: #1a1a1a;
-    --bleu: #00897B;
-    --hover-vert: #68E2BD;
-    --rouge: #AE172B;
-    --grey: #37474F;
-    --bg-grey: #F4F6F8;
-    --header-grey: #FFFFFF;
     --violet: #4D1494;
-
-    /* Couleurs RDV spécifiques */
-    --bleu-rdv: #2962FF;
-    --jaune-rdv: #FFD600;
-    
-    /* Effets */
-    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
-    --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.1);
+    --vert-survol: #68E2BD;
+    --rouge-urgence: #AE172B;
+    --beige-fond: #F7F7F1;
+    --beige-menu: #E8E8DF;
+    --gris-fonce: #595E57;
+    --bleu-rdv: #0C3EB4;
+    --orange-psy: #BC5800;
     --radius: 16px;
-
-    /* Typographie */
-    --main-font: 'Zalando Sans', 'Arial', sans-serif;
-    --space: 0.25rem;
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 /* =========================================
-   HEADER
+   HEADER (Exact PDF)
    ========================================= */
 .o-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--header-grey);
+    background-color: var(--blanc);
+    height: 80px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     position: relative;
     z-index: 10;
 }
 
-.m-header-other {
+.a-header-acc {
+    background-color: var(--beige-menu);
+    color: var(--noir);
+    padding: 0 40px;
+    height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
-}
-
-.a-header-acc,
-.a-header-urg,
-.a-header-cont {
-    padding: calc(var(--space) * 8);
-    text-align: center;
-    font-family: var(--main-font);
+    font-weight: 700;
+    text-decoration: none;
     font-size: 0.9rem;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    font-weight: 600;
-    letter-spacing: 0.1rem;
-    display: block;
-    transition: opacity 0.3s;
 }
 
-.a-header-acc {
-    background: #f0f0f0;
-    color: var(--noir);
+.m-header-other {
+    display: flex;
+    height: 100%;
 }
 
 .a-header-urg {
-    background-color: var(--rouge);
+    background-color: var(--rouge-urgence);
     color: var(--blanc);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .a-header-cont {
     background-color: var(--violet);
     color: var(--blanc);
-}
-
-.a-header-acc:hover,
-.a-header-urg:hover,
-.a-header-cont:hover {
-    opacity: 0.9;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 /* =========================================
-   TITRES & HERO
+   TITRES & HERO (Exact PDF)
    ========================================= */
 .m-parcour-content {
-    margin-bottom: 2rem;
-    padding-top: 3rem;
+    padding: 60px 0 40px 0;
     text-align: left;
 }
 
 .a-parcour-title {
-    font-family: var(--main-font);
-    font-size: 2.5rem;
-    font-weight: 800;
+    font-size: 3.5rem;
+    font-weight: 900;
     color: var(--noir);
-    margin-bottom: 0.5rem;
+    margin-bottom: 10px;
 }
 
 .a-parcour-subtitle {
-    font-family: var(--main-font);
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    color: var(--gris-fonce);
     font-weight: 500;
-    color: var(--grey);
-    opacity: 0.8;
 }
 
 /* =========================================
-   NAVIGATION (CARTES DU HAUT)
+   CARTES NAVIGATION (Horizontal)
    ========================================= */
-.m-rdv-top-nav {
+.m-parcour-card-all, .m-rdv-top-nav {
     display: flex;
-    justify-content: flex-start;
-    gap: 2rem;
-    padding-top: 1rem;
-    margin-bottom: 3rem;
+    gap: 20px;
+    margin-bottom: 80px;
     flex-wrap: wrap;
 }
 
 .m-parcour-card {
-    width: 200px;
-    height: 160px;
+    width: 250px;
+    height: 350px;
     border-radius: var(--radius);
-    background-size: cover;
-    background-position: center;
+    background-color: var(--blanc);
     position: relative;
     overflow: hidden;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-shadow: var(--shadow-soft);
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
     border: 4px solid transparent;
 }
 
 .m-parcour-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
 }
 
-/* Images Spécifiques */
-.card-medecin {
-    background-color: #E3F2FD;
-    background-image: url('assets/img/01.jpg');
-    background-size: cover;
-}
-
-.card-psy {
-    background-color: #F3E5F5;
-    background-image: url('assets/img/02.png');
-    background-size: cover;
-}
-
-.card-gyneco {
-    background-color: #FCE4EC;
-    background-image: url('assets/img/03.png');
-    background-size: cover;
-}
+.first, .card-medecin { background-image: url('assets/img/01.jpg'); }
+.second, .card-psy { background-image: url('assets/img/02.png'); }
+.third, .card-gyneco { background-image: url('assets/img/03.png'); }
+.fourth { background-image: url('assets/img/04.png'); }
 
 .m-parcour-card-txt {
     position: absolute;
-    bottom: 0;
     width: 100%;
-    padding: 0.8rem;
-    font-family: var(--main-font);
-    font-weight: 700;
+    bottom: 20px;
+    left: 0;
+    bottom: 0;
+    padding: 15px;
+    border-radius: 8px;
     text-align: center;
-    font-size: 0.9rem;
-    background: rgba(255, 255, 255, 0.9);
+    font-weight: 800;
     color: var(--noir);
-    backdrop-filter: blur(5px);
-    transition: all 0.3s;
+    font-size: 0.95rem;
+    border-radius: 0 0 0 10px;
 }
 
-/* État Actif Navigation */
+.m-parcour-card-txt.first, .m-parcour-card-txt.third, .m-parcour-card-txt.fourth {
+    background: var(--violet);
+}
+
+.m-parcour-card-txt.second {
+    background: var(--vert-survol);
+}
+
 .m-parcour-card.active {
-    border-color: var(--hover-vert);
-    transform: scale(1.05);
-}
-
-.m-parcour-card.active .m-parcour-card-txt {
-    background: var(--blanc);
-    color: var(--noir);
+    border-color: var(--vert-survol);
 }
 
 /* =========================================
-   SECTIONS & ANIMATIONS
+   LAYOUT CONTENU (Sommaire + Texte)
    ========================================= */
-.hidden-section {
-    display: none;
+.o-content-layout {
+    display: flex;
+    gap: 60px;
+    padding-bottom: 100px;
+    align-items: flex-start;
 }
 
-.visible-section {
-    display: flex;
-    animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.m-sidebar {
+    width: 350px;
 }
+
+.a-sidebar-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--vert-survol);
+    margin-bottom: 30px;
+}
+
+.m-sidebar-list {
+
+    border-radius: 12px;
+    padding: 10px 0;
+    list-style: none;
+}
+
+.m-sidebar-list li {
+    padding: 20px 30px;
+    font-weight: 700;
+    color: var(--noir);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.m-sidebar-list li:last-child {
+    border-bottom: none;
+}
+
+.m-main-text {
+    flex: 1;
+}
+
+.a-content-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--noir);
+    margin-bottom: 40px;
+}
+
+.a-inscription-mater-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--noir);
+    margin-bottom: 20px;
+    padding-top: 3vh;
+}
+
+.a-inscription-mater-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--gris-fonce);
+}
+
+/* =========================================
+   RDV & DASHBOARD 
+   ========================================= */
+.hidden-section { display: none; }
+.visible-section { display: flex; animation: slideUpFade 0.6s forwards; flex-direction: column; }
 
 @keyframes slideUpFade {
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.o-rdv-section {
-    padding: 1rem 0;
-    flex-direction: column;
-    gap: 1.5rem;
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 .m-card-rdv {
     background: var(--blanc);
     border-radius: var(--radius);
-    padding: 3rem;
+    padding: 40px;
     text-align: center;
     box-shadow: var(--shadow-soft);
-    border: 1px solid rgba(0, 0, 0, 0.03);
-}
-
-.a-rdv-subtitle {
-    color: var(--noir) !important;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 0.5rem;
-}
-
-.a-rdv-title {
-    color: var(--noir);
-    font-family: var(--main-font);
-    font-size: 1.8rem;
-    font-weight: 800;
     margin-bottom: 2rem;
-}
-
-/* =========================================
-   BOUTONS DE CHOIX
-   ========================================= */
-.m-btn-group {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
 }
 
 .btn-rdv {
     padding: 1rem 2rem;
     border: none;
     border-radius: 12px;
-    font-family: var(--main-font);
-    font-weight: 600;
-    font-size: 1rem;
+    font-weight: 700;
     cursor: pointer;
-    transition: all 0.2s ease;
-    min-width: 220px;
     background-color: #f0f4f8;
     color: var(--noir);
+    transition: 0.2s;
 }
 
-.btn-rdv.end {
-  background: var(--blanc);
-  border: 2px solid var(--hover-vert);
-  color: var(--noir);
-}
-
-.btn-rdv.end:hover {
-    background-color: var(--noir);
-    color: var(--hover-vert);
-    transform: translateY(-2px);
-}
-
-.btn-rdv:hover {
-    background-color: var(--hover-vert);
-    transform: translateY(-2px);
-}
-
-/* Bouton Sélectionné */
-.btn-rdv.selected {
-    background-color: var(--hover-vert);
-    color: var(--noir);
-    box-shadow: 0 4px 15px rgba(41, 98, 255, 0.3);
-    transform: translateY(-2px);
-}
-
-/* =========================================
-   INPUT DATE & HORAIRES
-   ========================================= */
-.m-date-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-}
-
-.m-date-input {
-    padding: 1rem 2rem;
-    border: 2px solid #e0e0e0;
-    border-radius: 12px;
-    font-family: var(--main-font);
-    font-size: 1.2rem;
-    color: var(--noir);
-    background: var(--blanc);
-    outline: none;
-    transition: border-color 0.3s;
-    cursor: pointer;
-}
-
-.m-date-input:focus {
-    border-color: var(--hover-vert);
-}
-
-.m-contact-info {
-    margin-bottom: 2rem;
-    font-size: 0.95rem;
-    color: var(--grey);
-    opacity: 0.8;
-}
-
-.m-contact-horaire {
-    font-weight: 600;
-    color: var(--noir);
-    margin-top: 0.5rem;
-}
-
-/* Grille Horaires */
-.m-slots-container {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    flex-wrap: wrap;
-    margin-top: 1rem;
-}
-
-.m-slot-column h3 {
-    color: var(--hover-vert);
-    margin-bottom: 1.5rem;
-    font-family: var(--main-font);
-    font-weight: 700;
+.btn-rdv:hover, .btn-rdv.selected {
+    background-color: var(--vert-survol);
 }
 
 .m-slots-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
 }
 
 .btn-slot {
-    padding: 0.7rem 1.2rem;
-    border: 1px solid #e0e0e0;
+    padding: 1rem;
+    border: 2px solid #E0E9FF;
     background: var(--blanc);
-    color: var(--noir);
-    border-radius: 8px;
-    font-weight: 600;
+    border-radius: 12px;
+    font-weight: 700;
     cursor: pointer;
-    transition: all 0.2s;
-}
-
-.btn-slot:hover {
-    border-color: var(--hover-vert);
-    color: var(--noir);
-    background: #f5f9ff;
-    scale: 1.05;
 }
 
 .btn-slot.selected {
-    background: var(--hover-vert);
-    color: var(--noir);
-    border-color: var(--hover-vert);
-    box-shadow: 0 4px 10px rgba(41, 98, 255, 0.2);
-    transition: all 0.2s ease;
+    background: var(--bleu-rdv);
+    color: var(--blanc);
 }
+
+/* Styles Lignes Dashboard */
+.appointment-row {
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+.row-couple { background-color: #E0E9FF; color: #0C3EB4; }
+.row-enceinte { background-color: #FFE8D4; color: #BC5800; }
+.row-repos { background-color: #2B840E; color: white; justify-content: center; }
+
 
 .btn-slot.disabled {
-    opacity: 0.3;
+    background: #F7F7F1;
+    color: #A0A0A0;
+    border-color: #D0D0D0;
     cursor: not-allowed;
-    border-color: transparent;
-    background: #f0f0f0;
-    color: #aaa;
-    pointer-events: none;
 }
-
-/* =========================================
-   RECAPITULATIF
-   ========================================= */
-.recap-card {
-    border: 2px solid var(--hover-vert);
-    background: #f8fbff;
-}
-
-.a-recap-text {
-    font-family: var(--main-font);
-    font-size: 1.2rem;
-    line-height: 1.8;
-    margin-bottom: 2rem;
-    color: var(--noir);
-}
-
-.a-recap-text strong {
-    color: var(--hover-vert);
-}
-

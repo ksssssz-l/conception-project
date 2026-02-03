@@ -32,7 +32,6 @@ const db = {
             { id: "honore", nom: "Madame Honoré" },
             { id: "garnier", nom: "Madame Garnier" }
         ],
-        // Le motif ici détermine le créneau horaire selon le PDF
         motifs: [
             { id: "couple", label: "Rendez-vous en couple" },
             { id: "grossesse", label: "Rendez-vous femme enceinte" }
@@ -97,7 +96,6 @@ let state = {
 // 3. LOGIQUE & ANIMATIONS
 // =========================================================
 
-// Sélections DOM
 const navCards = document.querySelectorAll('.js-nav-card');
 const sectionPraticien = document.getElementById('step-praticien');
 const sectionMotif = document.getElementById('step-motif');
@@ -106,9 +104,7 @@ const sectionDate = document.getElementById('step-date');
 const sectionSlots = document.getElementById('step-slots');
 const sectionRecap = document.getElementById('recap-section');
 
-// Fonction utilitaire pour cacher/reset les étapes suivantes
 function resetStepsFrom(stepLevel) {
-    // 1: Praticien, 2: Motif, 3: Nature, 4: Date, 5: Slots, 6: Recap
     if(stepLevel <= 1) { hideSection(sectionPraticien); state.praticien = null; }
     if(stepLevel <= 2) { hideSection(sectionMotif); state.motif = null; }
     if(stepLevel <= 3) { hideSection(sectionNature); state.nature = null; }
@@ -135,34 +131,20 @@ function hideSection(element) {
     element.classList.add('hidden-section');
 }
 
-// ---------------------------------------------
-// ETAPE 0 : CLICK SERVICE (Nav du haut)
-// ---------------------------------------------
 navCards.forEach(card => {
     card.addEventListener('click', () => {
-        // UI Active
         navCards.forEach(c => c.classList.remove('active'));
         card.classList.add('active');
-
-        // Update State
         state.service = card.dataset.service;
-        
-        // Reset tout le reste
         resetStepsFrom(1);
-
-        // Injecter les Praticiens correspondant au service
         renderPraticiens(state.service);
         showSection(sectionPraticien);
     });
 });
 
-// ---------------------------------------------
-// ETAPE 1 : GENERATION ET CHOIX PRATICIEN
-// ---------------------------------------------
 function renderPraticiens(serviceKey) {
     const container = document.getElementById('container-praticien');
     container.innerHTML = ''; 
-
     const dataService = db[serviceKey];
     document.getElementById('title-praticien').textContent = "Choisissez votre " + dataService.label;
 
@@ -170,17 +152,12 @@ function renderPraticiens(serviceKey) {
         const btn = document.createElement('button');
         btn.className = 'btn-rdv';
         btn.textContent = p.nom;
-        
         btn.addEventListener('click', () => {
             container.querySelectorAll('.btn-rdv').forEach(b => b.classList.remove('selected'));
             btn.classList.add('selected');
-
             state.praticien = p.id;
-            
-            // Mise à jour des labels contextuels
             document.getElementById('label-praticien-name-1').textContent = p.nom;
             document.getElementById('label-praticien-name-2').textContent = p.nom;
-
             resetStepsFrom(2);
             renderMotifs(serviceKey);
             showSection(sectionMotif);
@@ -189,44 +166,31 @@ function renderPraticiens(serviceKey) {
     });
 }
 
-// ---------------------------------------------
-// ETAPE 2 : CHOIX MOTIF (Couple/Enceinte...)
-// ---------------------------------------------
 function renderMotifs(serviceKey) {
     const container = document.getElementById('container-motif');
     container.innerHTML = '';
-
     const dataService = db[serviceKey];
 
     dataService.motifs.forEach(m => {
         const btn = document.createElement('button');
         btn.className = 'btn-rdv';
         btn.textContent = m.label;
-
         btn.addEventListener('click', () => {
             container.querySelectorAll('.btn-rdv').forEach(b => b.classList.remove('selected'));
             btn.classList.add('selected');
-
             state.motif = m.id;
-
             resetStepsFrom(3);
-            renderNature(serviceKey); // On passe à l'étape Nature
+            renderNature(serviceKey);
             showSection(sectionNature);
         });
         container.appendChild(btn);
     });
 }
 
-// ---------------------------------------------
-// ETAPE 3 : CHOIX NATURE (Premier / Suivi) - NOUVEAU
-// ---------------------------------------------
 function renderNature(serviceKey) {
     const container = document.getElementById('container-nature');
     container.innerHTML = '';
-
     const dataService = db[serviceKey];
-
-    // On utilise les natures définies dans DB (ou des valeurs par défaut)
     const natures = dataService.natures || [
         { id: "premier", label: "Premier rendez-vous" },
         { id: "suivi", label: "Rendez-vous de suivi" }
@@ -236,13 +200,10 @@ function renderNature(serviceKey) {
         const btn = document.createElement('button');
         btn.className = 'btn-rdv';
         btn.textContent = n.label;
-
         btn.addEventListener('click', () => {
             container.querySelectorAll('.btn-rdv').forEach(b => b.classList.remove('selected'));
             btn.classList.add('selected');
-
             state.nature = n.id;
-
             resetStepsFrom(4);
             showSection(sectionDate);
         });
@@ -250,9 +211,6 @@ function renderNature(serviceKey) {
     });
 }
 
-// ---------------------------------------------
-// ETAPE 4 : DATE
-// ---------------------------------------------
 document.getElementById('date-input').addEventListener('change', (e) => {
     if(e.target.value) {
         state.date = e.target.value;
@@ -262,29 +220,22 @@ document.getElementById('date-input').addEventListener('change', (e) => {
     }
 });
 
-// ---------------------------------------------
-// ETAPE 5 : LOGIQUE HORAIRES
-// ---------------------------------------------
 function updateAvailableSlots() {
     const allSlots = document.querySelectorAll('.btn-slot');
     const serviceData = db[state.service];
-    
     let validSlots = [];
 
-    // Logique Psy : Dépend du PRATICIEN et du MOTIF (Couple/Grossesse)
     if(state.service === 'psy') {
         const slotsForDoc = serviceData.horaires[state.praticien];
         if(slotsForDoc) {
             validSlots = slotsForDoc[state.motif] || [];
         } else {
-            validSlots = ["09:00", "10:00"]; // Fallback
+            validSlots = ["09:00", "10:00"];
         }
     } else {
-        // Médecin/Gynéco : Horaires standards
         validSlots = serviceData.horaires.default || [];
     }
 
-    // Affichage
     allSlots.forEach(btn => {
         btn.classList.remove('selected');
         if(validSlots.includes(btn.value)) {
@@ -295,28 +246,50 @@ function updateAvailableSlots() {
     });
 }
 
-// Clic sur un horaire
 document.querySelectorAll('.btn-slot').forEach(btn => {
     btn.addEventListener('click', () => {
         if(btn.classList.contains('disabled')) return;
-
         document.querySelectorAll('.btn-slot').forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
         state.heure = btn.value;
-
         showRecap();
     });
 });
+
+// =========================================================
+// 4. PERSISTANCE (SAUVEGARDE DANS LE DASHBOARD)
+// =========================================================
+function saveBooking() {
+    // On récupère la base existante ou on crée un tableau vide
+    let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+    
+    // On crée l'objet du nouveau RDV
+    const newAppointment = {
+        id: Date.now(), // ID unique basé sur le temps
+        service: state.service,
+        praticienId: state.praticien,
+        motif: state.motif,
+        nature: state.nature,
+        date: state.date,
+        heure: state.heure,
+        // Pour l'exercice on simule des noms de parents
+        patientName: state.motif === "couple" ? "Madame Art & Monsieur Art" : "Madame Art"
+    };
+
+    // On l'ajoute et on sauvegarde
+    appointments.push(newAppointment);
+    localStorage.setItem('appointments', JSON.stringify(appointments));
+    console.log("RDV Sauvegardé :", newAppointment);
+}
 
 // ---------------------------------------------
 // ETAPE 6 : RECAP
 // ---------------------------------------------
 function showRecap() {
     const sData = db[state.service];
-    
     const pName = sData.praticiens.find(p => p.id === state.praticien).nom;
     const mName = sData.motifs.find(m => m.id === state.motif).label;
-    const nName = sData.natures.find(n => n.id === state.nature).label; // "Premier" ou "Suivi"
+    const nName = sData.natures.find(n => n.id === state.nature).label;
     
     const dateObj = new Date(state.date);
     const dateStr = dateObj.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
@@ -326,6 +299,9 @@ function showRecap() {
     document.getElementById('final-nature').textContent = nName;
     document.getElementById('final-date').textContent = dateStr;
     document.getElementById('final-time').textContent = state.heure.replace(':', 'h');
+
+    // NOUVEAU : On sauvegarde le RDV au moment de l'affichage du récap
+    saveBooking();
 
     showSection(sectionRecap);
     setTimeout(() => {
